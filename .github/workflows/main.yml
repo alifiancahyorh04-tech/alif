@@ -1,0 +1,14 @@
+@echo off
+setlocal
+where java >nul 2>nul || (echo Java JDK 17 belum terpasang.& pause & exit /b 1)
+where gradle >nul 2>nul || (echo Gradle belum terpasang. Instal Gradle 8.x dan Android SDK Platform 34 terlebih dahulu.& pause & exit /b 1)
+gradle assembleDebug
+if errorlevel 1 (
+  echo Build gagal. Periksa pesan error di atas.
+  pause
+  exit /b 1
+)
+echo.
+echo APK berhasil dibuat:
+echo %CD%\app\build\outputs\apk\debug\app-debug.apk
+pause
